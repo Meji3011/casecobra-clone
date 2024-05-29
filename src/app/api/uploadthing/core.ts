@@ -1,10 +1,9 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { UploadThingError } from "uploadthing/server";
 import { z } from "zod";
+import sharp from "sharp";
+import { db } from "@/db";
 
 const f = createUploadthing();
-
-const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
 
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "4MB" } })
@@ -15,7 +14,37 @@ export const ourFileRouter = {
     .onUploadComplete(async ({ metadata, file }) => {
       const { configId } = metadata.input;
 
-      return { configId };
+      const res = await fetch(file.url);
+      // Fetch the image
+      const buffer = await res.arrayBuffer();
+      // Convert it to a buffer
+
+      const imgMetadata = await sharp(buffer).metadata();
+      const { width, height } = imgMetadata;
+
+      // if there is no configId, that means we're creating a new config for an image, and if there is a configId already, that means we are updating the configuration of an existing image.
+      if (!configId) {
+        const configuration = await db.configuration.create({
+          data: {
+            imageUrl: file.url,
+            height: height || 500,
+            width: width || 500,
+          },
+        });
+
+        return { configId: configuration.id };
+      } else {
+        const updatedConfiguration = await db.configuration.update({
+          where: {
+            id: configId,
+          },
+          data: {
+            croppedImageUrl: file.url,
+          },
+        });
+
+        return { configId: updatedConfiguration.id };
+      }
     }),
 } satisfies FileRouter;
 
