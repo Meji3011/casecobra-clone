@@ -43,7 +43,7 @@ export default function Home() {
                   </li>
                   <li className="flex gap-1.5 items-center text-left">
                     <Check className="h-5 w-5 shrink-0 text-green-600" />
-                    Model iPhone models supported
+                    Modern iPhone models supported
                   </li>
                 </div>
               </ul>
@@ -244,7 +244,7 @@ export default function Home() {
             </li>
             <li className="w-fit">
               <Check className="h-5 w-5 text-green-600 inline mr-1.5" />
-              Scratch and fingerprint resistant coating
+              Fingerprint resistant coating
             </li>
             <li className="w-fit">
               <Check className="h-5 w-5 text-green-600 inline mr-1.5" />
