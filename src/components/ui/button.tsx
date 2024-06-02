@@ -1,4 +1,4 @@
-// Added isLoading and loadingText into this component for smoother transitions navigating through pages.
+// Added isLoading and loadingText into this component for smoother transitions navigating through pages. Also implemented the three dots pulsing to imitate the feeling of loading for better UX.
 
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
