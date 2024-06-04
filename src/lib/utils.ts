@@ -19,7 +19,7 @@ export const formatPrice = (price: number) => {
 export function constructMetadata({
   title = "CaseCobra - custom high-quality phone cases",
   description = "Create custom high-quality phone cases in seconds",
-  metadataBase = "https://casecobra-clone-grt.vercel.app", 
+  metadataBase = new URL("https://casecobra-clone-grt.vercel.app"), 
   image = "/thumbnail.png",
   icons = "/favicon.ico",
 }: {

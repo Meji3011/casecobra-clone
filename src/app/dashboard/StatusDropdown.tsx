@@ -20,7 +20,7 @@ const LABEL_MAP: Record<keyof typeof OrderStatus, string> = {
   shipped: "Shipped",
 };
 
-const statusDropDown = ({
+const StatusDropDown = ({
   id,
   orderStatus,
 }: {
@@ -72,4 +72,4 @@ const statusDropDown = ({
   );
 };
 
-export default statusDropDown;
+export default StatusDropDown;
