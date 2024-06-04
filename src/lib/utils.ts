@@ -25,6 +25,7 @@ export function constructMetadata({
 }: {
   title?: string;
   description?: string;
+  metadataBase?: URL;
   image?: string;
   icons?: string;
 } = {}): Metadata {
